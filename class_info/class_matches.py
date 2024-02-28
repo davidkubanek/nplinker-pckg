@@ -245,11 +245,12 @@ class ClassMatches:
                 if not chem_key in class_matching_tables:
                     class_matching_tables[chem_key] = {}
                     class_matching_counts[chem_key] = {}
-                # add matching tables as DataFrames
                 # orginal code
                 # counts_df = pd.DataFrame.from_dict(counts, dtype=int)
-                # remove NaNs and replace with 0 in counts and only then convert to integer
-                counts_df = pd.DataFrame.from_dict(counts).fillna(0).astype(int)
+                # remove NaNs and replace with 0 in counts
+                counts_df = pd.DataFrame.from_dict(counts).fillna(0)
+                # convert to integer
+                counts_df = counts_df.astype(int)
                 
                 class_matching_tables[bgc_key][chem_key] = (
                     counts_df / counts_df.sum(axis=0)).fillna(0)
