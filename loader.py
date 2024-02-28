@@ -168,6 +168,10 @@ class DatasetLoader():
             'ignore_spaces', self.ANTISMASH_IGNORE_SPACES_DEFAULT)
         self._bigscape_cutoff = self._dataset.get('bigscape_cutoff',
                                                   self.BIGSCAPE_CUTOFF_DEFAULT)
+        
+        # include user-defined cutoff in the params
+        self.EXTRA_BIGSCAPE_PARAMS_DEFAULT = self.EXTRA_BIGSCAPE_PARAMS_DEFAULT + ' --cutoffs {}'.format(self._bigscape_cutoff/100)
+
         self._extended_metadata_table_parsing = self._dataset.get(
             'extended_metadata_table_parsing',
             self.EXTENDED_METADATA_TABLE_PARSING_DEFAULT)
